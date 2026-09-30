@@ -1,0 +1,47 @@
+# =============================================================================
+# xunjicar — 八路灰度巡线 + 测距/惯性闭环 小车
+# 目标：只提交"源码 / 工程配置 / 文档 / 脚本"，剔除可重新生成的构建产物。
+# =============================================================================
+
+# ---- 构建产物（由 tools/build.ps1 或 CubeIDE 重新生成，约 73 MB）----
+build/
+**/build/
+*.o
+*.d
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+*.su
+
+# ---- CubeMX / IDE 中间产物 ----
+mx.scratch
+.cproject
+.project
+.settings/**/*.tmp
+*.launch
+.idea/
+*.uvguix.*
+*.uvoptx
+*.uvprojx
+JLinkLog.txt
+JLinkSettings.ini
+
+# ---- clangd / ccls 索引缓存 ----
+.clangd/
+.cache/
+compile_commands.json
+
+# ---- Python 缓存（tools/telemetry_monitor.py）----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---- 编辑器 / 系统杂项 ----
+*.swp
+*~
+Thumbs.db
+desktop.ini
+.DS_Store

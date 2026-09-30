@@ -1,0 +1,39 @@
+# 统一换行，避免 Windows/Linux 交叉提交时整文件 diff
+* text=auto eol=lf
+
+# 二进制资源：禁止换行转换与 diff
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.stp   binary
+*.step  binary
+*.pdf   binary
+*.hex   binary
+*.bin   binary
+*.elf   binary
+*.o     binary
+
+# 源码类型（便于 GitHub 语言统计与高亮）
+*.c     text diff=c
+*.h     text diff=c
+*.s     text
+*.ld    text
+*.ioc   text
+*.md    text
+*.ps1   text
+*.cmd   text
+*.py    text
+
+# ！！重要：Windows 批处理必须是 CRLF 换行 ！！
+# cmd.exe 解析 GBK 编码的 .cmd 时，如果只有 LF 换行会错行：
+#   cd /d "%~dp0" 报 "系统找不到指定的路径"
+#   中文行被整行吃掉
+#   powershell 命令前半截丢失（pow 被吞 -> 'ershell' 不是内部或外部命令）
+# 上面 "* text=auto eol=lf" 是全仓库生效的，会把 .cmd 也转成 LF，
+# 所以这里必须显式覆盖回 CRLF（这两行必须在上面那条之后，顺序不能反）。
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+
+# PowerShell / Python 在 Windows 上对 LF 容忍，但统一成 CRLF 更好读
+*.ps1   text eol=crlf
